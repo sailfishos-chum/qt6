@@ -97,34 +97,15 @@ BuildArch: noarch
 %description srpm-macros
 %{summary}.
 
-%package filesystem
-Summary: Filesystem for Qt6 packages
-%description filesystem
-Filesystem for Qt 6 packages.
+%prep
+%setup -q
 
 %install
 # See macros.qt6 where the directories are specified
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/bin
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/cmake
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/examples
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/imports
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/metatypes
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/modules
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/libexec
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/mkspecs
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/plugins
-mkdir -p %{buildroot}%{_prefix}/{lib,%{_lib}}/qt6/qml
-mkdir -p %{buildroot}%{_datadir}/qt6
-mkdir -p %{buildroot}%{_docdir}/qt6
-mkdir -p %{buildroot}%{_includedir}/qt6
-mkdir -p %{buildroot}%{_datadir}/qt6/translations
-
 
 install -Dpm644 macros.qt6      %{buildroot}%{_rpmmacrodir}/macros.qt6
 install -Dpm644 macros.qt6-srpm %{buildroot}%{_rpmmacrodir}/macros.qt6-srpm
-#install -Dpm644 %{SOURCE3} %{buildroot}%{_fileattrsdir}/qt6qml.attr
-#install -Dpm755 %{SOURCE4} %{buildroot}%{_rpmconfigdir}/qt6qml.prov
+
 mkdir -p %{buildroot}%{_datadir}/qt6/wrappers
 ln -s %{_bindir}/qmake-qt6.sh %{buildroot}%{_datadir}/qt6/wrappers/qmake-qt6
 ln -s %{_bindir}/qmake-qt6.sh %{buildroot}%{_datadir}/qt6/wrappers/qmake
@@ -163,33 +144,3 @@ echo "- Qt6 devel meta package" > %{buildroot}%{_docdir}/qt6-devel/README
 
 %files srpm-macros
 %{_rpmmacrodir}/macros.qt6-srpm
-
-
-%files filesystem
-%dir %{_prefix}/lib/qt6
-%dir %{_prefix}/%{_lib}/qt6
-%dir %{_prefix}/lib/qt6/bin
-%dir %{_prefix}/%{_lib}/qt6/bin
-%dir %{_prefix}/lib/qt6/cmake
-%dir %{_prefix}/%{_lib}/qt6/cmake
-%dir %{_prefix}/lib/qt6/examples
-%dir %{_prefix}/%{_lib}/qt6/examples
-%dir %{_prefix}/lib/qt6/imports
-%dir %{_prefix}/%{_lib}/qt6/imports
-%dir %{_prefix}/lib/qt6/metatypes
-%dir %{_prefix}/%{_lib}/qt6/metatypes
-%dir %{_prefix}/lib/qt6/modules
-%dir %{_prefix}/%{_lib}/qt6/modules
-%dir %{_prefix}/lib/qt6/libexec
-%dir %{_prefix}/%{_lib}/qt6/libexec
-%dir %{_prefix}/lib/qt6/mkspecs
-%dir %{_prefix}/%{_lib}/qt6/mkspecs
-%dir %{_prefix}/lib/qt6/plugins
-%dir %{_prefix}/%{_lib}/qt6/plugins
-%dir %{_prefix}/lib/qt6/qml
-%dir %{_prefix}/%{_lib}/qt6/qml
-%dir %{_datadir}/qt6
-%dir %{_docdir}/qt6
-%dir %{_includedir}/qt6
-%dir %{_datadir}/qt6/translations
-
