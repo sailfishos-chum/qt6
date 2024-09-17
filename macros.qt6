@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: MIT
+
+%_opt_qt6_build_type RelWithDebInfo
+%_opt_qt6_build_tool ninja
+
+%_opt_qt6_prefix /opt/qt6
+%_opt_qt6_libdir %{_opt_qt6_prefix}/%{_libdir}
+%_opt_qt6_archdatadir %{_opt_qt6_prefix}/qt6
+%_opt_qt6_bindir %{_opt_qt6_prefix}/bin
+%_opt_qt6_datadir %{_opt_qt6_prefix}/share
+%_opt_qt6_docdir %{_opt_qt6_prefix}/doc
+%_opt_qt6_examplesdir %{_opt_qt6_prefix}/examples
+%_opt_qt6_headerdir %{_opt_qt6_prefix}/include
+%_opt_qt6_includedir %{_opt_qt6_headerdir}
+%_opt_qt6_importdir %{_opt_qt6_archdatadir}/imports
+%_opt_qt6_libexecdir %{_opt_qt6_archdatadir}/libexec
+%_opt_qt6_mkspecsdir %{_opt_qt6_archdatadir}/mkspecs
+%_opt_qt6_plugindir %{_opt_qt6_archdatadir}/plugins
+%_opt_qt6_qmldir %{_opt_qt6_archdatadir}/qml
+%_opt_qt6_qmake @@QMAKE@@
+%_opt_qt6_settingsdir %{_opt_qt6_prefix}/etc
+%_opt_qt6_sysconfdir %{_opt_qt6_settingsdir}
+%_opt_qt6_translationdir %{_opt_qt6_datadir}/qt6/translations
+
+%_opt_qt6_cflags %{nil}@@QT6_CFLAGS@@
+%_opt_qt6_cxxflags %{nil}@@QT6_CXXFLAGS@@
+%_opt_qt6_ldflags %{nil}%{?__global_ldflags} @@QT6_RPM_LD_FLAGS@@
+%_opt_qt6_optflags %{optflags} @@QT6_RPM_OPT_FLAGS@@
+
+%_opt_qt6_qmake_flags \\\
+  QMAKE_CFLAGS_DEBUG="${CFLAGS:-%{_opt_qt6_optflags} %{?_opt_qt6_cflags}}" \\\
+  QMAKE_CFLAGS_RELEASE="${CFLAGS:-%{_opt_qt6_optflags} %{?_opt_qt6_cflags}}" \\\
+  QMAKE_CXXFLAGS_DEBUG="${CXXFLAGS:-%{_opt_qt6_optflags} %{?_opt_qt6_cxxflags}}" \\\
+  QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS:-%{_opt_qt6_optflags} %{?_opt_qt6_cxxflags}}" \\\
+  QMAKE_LFLAGS_DEBUG="${LDFLAGS:-%{_opt_qt6_ldflags}}" \\\
+  QMAKE_LFLAGS_RELEASE="${LDFLAGS:-%{_opt_qt6_ldflags}}" \\\
+  QMAKE_STRIP=
+
+%opt_qmake_qt6 %{_opt_qt6_qmake} %{?_opt_qt6_qmake_flags}
+
+%opt_cmake_qt6 \
+ %cmake -DCMAKE_BUILD_TYPE=%{_opt_qt6_build_type} \\\
+        -DCMAKE_INSTALL_PREFIX=%{_opt_qt6_prefix} \\\
+%if "%_opt_qt6_build_tool" == "ninja" \
+        -GNinja \\\
+%else \
+        -G"Unix Makefiles" \\\
+%endif \
+        -DCMAKE_INSTALL_PREFIX=%{_opt_qt6_prefix} \\\
+        -DINSTALL_ARCHDATADIR=%{_opt_qt6_archdatadir} \\\
+        -DINSTALL_BINDIR=%{_opt_qt6_bindir} \\\
+        -DINSTALL_LIBDIR=%{_opt_qt6_libdir} \\\
+        -DINSTALL_LIBEXECDIR=%{_opt_qt6_libexecdir} \\\
+        -DINSTALL_DATADIR=%{_opt_qt6_datadir} \\\
+        -DINSTALL_DOCDIR=%{_opt_qt6_docdir} \\\
+        -DINSTALL_INCLUDEDIR=%{_opt_qt6_headerdir} \\\
+        -DINSTALL_EXAMPLESDIR=%{_opt_qt6_examplesdir} \\\
+        -DINSTALL_MKSPECSDIR=%{_opt_qt6_mkspecsdir} \\\
+        -DINSTALL_PLUGINSDIR=%{_opt_qt6_plugindir} \\\
+        -DINSTALL_QMLDIR=%{_opt_qt6_qmldir} \\\
+        -DINSTALL_SYSCONFDIR=%{_opt_qt6_sysconfdir} \\\
+        -DINSTALL_TRANSLATIONSDIR=%{_opt_qt6_translationdir} \\\
+        -DQT_DISABLE_RPATH=TRUE
