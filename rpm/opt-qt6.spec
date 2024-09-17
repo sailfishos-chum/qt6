@@ -5,7 +5,8 @@ Version: 6.7.2
 Release: 3%{?dist}
 Summary: Qt6 meta package
 License: GPL-3.0-only
-URL:     https://getfedora.org/
+URL:     http://qt-project.org/
+Source0: %{name}-%{version}.tar.bz2
 
 Requires: qt6-qt3d
 Requires: qt6-qt5compat
