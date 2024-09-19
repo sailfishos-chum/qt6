@@ -1,5 +1,5 @@
 
-Name: opt-qt6
+Name: qt6
 # This version MUST remain in sync with Qt6 versions!
 Version: 6.7.2
 Release: 3%{?dist}
@@ -120,7 +120,6 @@ sed -i \
   -e "s|@@QT6_RPM_LD_FLAGS@@|%{?qt6_rpm_ld_flags}|g" \
   -e "s|@@QT6_RPM_OPT_FLAGS@@|%{?qt6_rpm_opt_flags}|g" \
   -e "s|@@QMAKE@@|%{_prefix}/%%{_lib}/qt6/bin/qmake|g" \
-  -e "s|@@QMAKE_QT6_WRAPPER@@|%{_bindir}/qmake-qt6.sh|g" \
   %{buildroot}%{_rpmconfigdir}/macros.d/macros.qt6
 
 %if 0%{?metapackage}
