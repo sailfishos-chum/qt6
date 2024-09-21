@@ -46,8 +46,6 @@
 %else \
         -G"Unix Makefiles" \\\
 %endif \
-        -DCMAKE_C_COMPILER=/usr/bin/clang \\\
-        -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \\\
         -DCMAKE_INSTALL_PREFIX=%{_qt6_prefix} \\\
         -DINSTALL_ARCHDATADIR=%{_qt6_archdatadir} \\\
         -DINSTALL_BINDIR=%{_qt6_bindir} \\\

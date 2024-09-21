@@ -87,6 +87,7 @@ Requires: qt6-rpm-macros
 Summary: RPM macros for building Qt6 and KDE Frameworks 6 packages
 Requires: cmake >= 3
 Requires: gcc-c++
+Requires: ninja
 BuildArch: noarch
 %description rpm-macros
 %{summary}.
