@@ -2,6 +2,7 @@
 
 %_qt6_build_type RelWithDebInfo
 %_qt6_build_tool ninja
+%_qt6_platform linux-clang
 
 %_qt6_prefix %{_prefix}
 %_qt6_archdatadir %{_libdir}/qt6
