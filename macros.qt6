@@ -2,7 +2,7 @@
 
 %_qt6_build_type RelWithDebInfo
 %_qt6_build_tool ninja
-%_qt6_platform linux-clang
+%_qt6_platform @@PLATFORM@@
 
 %_qt6_prefix %{_prefix}
 %_qt6_archdatadir %{_libdir}/qt6
@@ -47,8 +47,7 @@
 %else \
         -G"Unix Makefiles" \\\
 %endif \
-        -DCMAKE_C_COMPILER=/usr/bin/clang \\\
-        -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \\\
+        @@COMPILER@@ \\\
         -DCMAKE_INSTALL_PREFIX=%{_qt6_prefix} \\\
         -DINSTALL_ARCHDATADIR=%{_qt6_archdatadir} \\\
         -DINSTALL_BINDIR=%{_qt6_bindir} \\\

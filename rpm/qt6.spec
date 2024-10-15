@@ -86,7 +86,11 @@ Requires: qt6-rpm-macros
 %package rpm-macros
 Summary: RPM macros for building Qt6 and KDE Frameworks 6 packages
 Requires: cmake >= 3
+%ifarch aarch64
+Requires: gcc-g++
+%else
 Requires: clang >= 3.7.0
+%endif
 Requires: ninja
 BuildArch: noarch
 %description rpm-macros
@@ -122,6 +126,19 @@ sed -i \
   -e "s|@@QT6_RPM_OPT_FLAGS@@|%{?qt6_rpm_opt_flags}|g" \
   -e "s|@@QMAKE@@|%{_prefix}/%%{_lib}/qt6/bin/qmake|g" \
   %{buildroot}%{_rpmconfigdir}/macros.d/macros.qt6
+
+%ifarch aarch64
+sed -i \
+  -e "s|@@PLATFORM@@|linux-g++|g" \
+  -e "s|@@COMPILER@@||g" \
+  %{buildroot}%{_rpmconfigdir}/macros.d/macros.qt6
+%else
+# 32 bit arch - to deal with gcc bugs
+sed -i \
+  -e "s|@@PLATFORM@@|linux-clang|g" \
+  -e "s|@@COMPILER@@|-DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++|g" \
+  %{buildroot}%{_rpmconfigdir}/macros.d/macros.qt6
+%endif
 
 %if 0%{?metapackage}
 mkdir -p %{buildroot}%{_docdir}/qt6
