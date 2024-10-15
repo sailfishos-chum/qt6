@@ -87,7 +87,7 @@ Requires: qt6-rpm-macros
 Summary: RPM macros for building Qt6 and KDE Frameworks 6 packages
 Requires: cmake >= 3
 %ifarch aarch64
-Requires: gcc-g++
+Requires: gcc-c++
 %else
 Requires: clang >= 3.7.0
 %endif
