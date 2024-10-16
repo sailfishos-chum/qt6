@@ -80,8 +80,8 @@ Update instructions for Qt6 or KF6:
 - Clean up `tmp` subfolder
 
 - For updating packages at OBS `sailfishos:chum:testing`, run
-  - for Qt6: `scripts/update-obs-packages.sh --qt5 --testing`
-  - for KF6: `scripts/update-obs-packages.sh --kf5 --testing`
+  - for Qt6: `scripts/update-obs-packages.sh --qt6 --testing`
+  - for KF6: `scripts/update-obs-packages.sh --kf6 --testing`
 
 - Wait till update is finished and test it
 
