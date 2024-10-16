@@ -8,7 +8,7 @@ kf6-kcolorscheme
 kf6-kconfig
 kf6-kconfigwidgets
 kf6-kcoreaddons
-kf6-kdoctools
+kf6-kdbusaddons
 kf6-kguiaddons
 kf6-ki18n
 kf6-kiconthemes
@@ -19,6 +19,7 @@ kf6-kitemviews
 kf6-kquickcharts
 kf6-ksvg
 kf6-kwidgetsaddons
+kf6-kwindowsystem
 kf6-plasma-wayland-protocols
 kf6-qqc2-breeze-style
 kf6-qqc2-desktop-style
