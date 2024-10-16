@@ -25,7 +25,7 @@ qt6-qttools
 qt6-qtvirtualkeyboard
 qt6-qtwayland
 qt6-qtwebchannel
-qt6-qtwebengine
+qt6-qtwebengine NOOBS
 qt6-qtwebsockets
 
-qt-sfos-maliit-platforminputcontext NOGIT
+qt-sfos-maliit-platforminputcontext NOAUTO

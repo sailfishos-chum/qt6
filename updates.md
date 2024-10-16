@@ -26,6 +26,8 @@ NOGIT keyword at the end of the line. Differences between keywords:
 - NOGIT - automatic GitHub source repository is skipped, project
   _service update at OBS is automatic.
 
+- NOOBS - automatic update is skipped for _service at OBS.
+
 - NOAUTO - automatic update is skipped for GitHub sources and for
   _service at OBS.
 
@@ -33,7 +35,7 @@ Examples:
 
 ```
 qtbase
-qtwebengine NOAUTO
+qtwebengine NOOBS
 kf6-kirigami2 opt-kf6-kirigami2
 qt6 NOGIT
 ```

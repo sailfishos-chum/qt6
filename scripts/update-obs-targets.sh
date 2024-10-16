@@ -39,7 +39,7 @@ while read -r line; do
     package_obs=$package_git
     (( ${#package_arr[@]} > 1 )) && [ ${package_arr[1]} != "NOGIT" ] && [ ${package_arr[1]} != "NOAUTO" ] && package_obs=${package_arr[1]}
     PACKAGES="$PACKAGES $package_obs"
-done < <(cat packages.qt6 packages.kf6)
+done < <(cat packages.qt6 packages.kf6 | grep -v NOOBS)
 PACKAGES="$PACKAGES `cat applications.obs`"
 
 echo $PACKAGES
