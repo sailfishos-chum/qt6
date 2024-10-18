@@ -29,3 +29,5 @@ qt6-qtwebengine NOOBS
 qt6-qtwebsockets
 
 qt6-sfos-maliit-platforminputcontext NOAUTO
+
+qt6-qtkeychain
