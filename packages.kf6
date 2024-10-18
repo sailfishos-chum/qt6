@@ -26,3 +26,10 @@ kf6-sonnet
 kf6-kirigami-addons NOGIT
 kf6-plasma-wayland-protocols NOGIT
 kf6-qqc2-breeze-style NOGIT
+
+kf6-kcalendarcore NOGIT
+kf6-kcontacts NOGIT
+kf6-kholidays NOGIT
+kf6-knotifications NOGIT
+kf6-kunitconversion NOGIT
+kf6-prison NOGIT
