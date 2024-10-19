@@ -1,6 +1,7 @@
 qt6 NOGIT
 
 qt6-qt3d
+qt6-qt5compat
 qt6-qtbase
 qt6-qtcharts
 qt6-qtconnectivity
@@ -28,6 +29,5 @@ qt6-qtwebchannel
 qt6-qtwebengine NOOBS
 qt6-qtwebsockets
 
+qt6-qtkeychain NOGIT
 qt6-sfos-maliit-platforminputcontext NOAUTO
-
-qt6-qt5compat
