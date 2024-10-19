@@ -8,6 +8,7 @@ ADD=
 DEL=
 KF6=
 QT6=
+KDE=
 OBS_PROJECT=
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd -P )
 OBSMOD=${SCRIPT_DIR}/obsbuildmod.py
@@ -39,7 +40,7 @@ while read -r line; do
     package_obs=$package_git
     (( ${#package_arr[@]} > 1 )) && [ ${package_arr[1]} != "NOGIT" ] && [ ${package_arr[1]} != "NOAUTO" ] && package_obs=${package_arr[1]}
     PACKAGES="$PACKAGES $package_obs"
-done < <(cat packages.qt6 packages.kf6 | grep -v NOOBS)
+done < <(cat packages.qt6 packages.kf6 packages.kde | grep -v NOOBS)
 PACKAGES="$PACKAGES `cat applications.obs`"
 
 echo $PACKAGES

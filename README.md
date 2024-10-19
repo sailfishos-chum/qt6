@@ -27,6 +27,11 @@ corresponding Qt or KF version.
 In addition, add the library to [packages.qt6](packages.qt6) or 
 [packages.kf6](packages.kf6) files. 
 
+For packages and libraries from KPIM or KDE Applications which use common
+versioning scheme (usually YY.MM.R, for year, month, and a counter),
+[packages.kde](packages.kde) is handled in the same way. The macro name is
+`kde_version` for these.
+
 By using these macros and having library added into packages files, it
 will be possible to update the libraries automatically on the next Qt
 or KF version bump.
