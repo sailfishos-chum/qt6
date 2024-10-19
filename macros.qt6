@@ -62,4 +62,5 @@
         -DINSTALL_QMLDIR=%{_qt6_qmldir} \\\
         -DINSTALL_SYSCONFDIR=%{_qt6_sysconfdir} \\\
         -DINSTALL_TRANSLATIONSDIR=%{_qt6_translationdir} \\\
-        -DQT_DISABLE_RPATH=TRUE
+        -DQT_DISABLE_RPATH=TRUE \\\
+        -DQT_QML_SKIP_CACHEGEN=TRUE
