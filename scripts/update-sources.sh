@@ -2,11 +2,12 @@
 
 set -e
 
-ARGS_PROCESSED=$(getopt -o kqv: --long kf6,qt6,version: -- "$@")
+ARGS_PROCESSED=$(getopt -o kqKv: --long kf6,qt6,kde,version: -- "$@")
 
 INPUT=
 KF6=
 QT6=
+KDE=
 VERSION=
 GITHUB_BASE=https://github.com/sailfishos-chum
 
@@ -15,6 +16,7 @@ while [ : ]; do
   case "$1" in
     -k | --kf6) KF6=1; INPUT=packages.kf6; shift; ;;
     -q | --qt6) QT6=1; INPUT=packages.qt6; shift; ;;
+    -K | --kde) KDE=1; INPUT=packages.kde; shift; ;;
     -v | --version) VERSION=$2; shift 2; ;;
     --) shift; break; ;;
   esac
@@ -23,8 +25,8 @@ done
 # check options
 [ -z "$INPUT" ] && echo "Input file missing" && exit 1
 [ -z "$VERSION" ] && echo "Target version missing" && exit 1
-[ -z "$KF6" ] && [ -z "$QT6" ] && echo "Specify whether KF6 or QT6 is updated" && exit 1
-[ ! -z "$KF6" ] && [ ! -z "$QT6" ] && echo "Specify either KF6 or QT6 is updated" && exit 1
+[ -z "$KF6" ] && [ -z "$QT6" ]  && [ -z "$KDE" ] && echo "Specify whether KDE, KF6, or QT6 is updated" && exit 1
+[ ! -z "$KF6" ] && [ ! -z "$QT6" ]  && [ ! -z "$KDE" ] && echo "Specify either KDE, KF6, or QT6 is updated" && exit 1
 
 [ -d tmp ] && echo "Directory tmp exists. Please remove before starting." && exit 1
 
@@ -51,6 +53,8 @@ while read -r line; do
 	sed -i "s/^%global kf6_version .*/%global kf6_version ${VERSION}/g" rpm/*.spec
     elif [ $QT6 ]; then
 	sed -i "s/^%global qt_version .*/%global qt_version ${VERSION}/g" rpm/*.spec
+    elif [ $KDE ]; then
+	sed -i "s/^%global kde_version .*/%global kde_version ${VERSION}/g" rpm/*.spec
     fi
     git add rpm/*.spec
     git status

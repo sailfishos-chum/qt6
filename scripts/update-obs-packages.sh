@@ -2,7 +2,7 @@
 
 set -e
 
-ARGS_PROCESSED=$(getopt -o kqrt --long kf6,qt6,release,testing -- "$@")
+ARGS_PROCESSED=$(getopt -o kqKrt --long kf6,qt6,kde,release,testing -- "$@")
 
 INPUT=
 KF6=
@@ -15,6 +15,7 @@ while [ : ]; do
   case "$1" in
     -k | --kf6) KF6=1; INPUT=packages.kf6; shift; ;;
     -q | --qt6) QT6=1; INPUT=packages.qt6; shift; ;;
+    -K | --kde) KDE=1; INPUT=packages.kde; shift; ;;
     -r | --release) OBS_PROJECT=sailfishos:chum; shift; ;;
     -t | --testing) OBS_PROJECT=sailfishos:chum:testing; shift; ;;
     --) shift; break; ;;
@@ -22,8 +23,8 @@ while [ : ]; do
 done
 
 # check options
-[ -z "$KF6" ] && [ -z "$QT6" ] && echo "Specify whether KF6 or QT6 is updated" && exit 1
-[ ! -z "$KF6" ] && [ ! -z "$QT6" ] && echo "Specify either KF6 or QT6 is updated" && exit 1
+[ -z "$KF6" ] && [ -z "$QT6" ] && [ -z "$KDE" ] && echo "Specify whether KDE, KF6 or QT6 is updated" && exit 1
+[ ! -z "$KF6" ] && [ ! -z "$QT6" ] && [ ! -z "$KDE" ] && echo "Specify either KDE, KF6 or QT6 is updated" && exit 1
 [ -z "$OBS_PROJECT" ] && echo "Specify whether you want to update release (sailfishos:chum) or testing (sailfishos:chum:testing) OBS project" && exit 1
 [ -z "$INPUT" ] && echo "Input file missing" && exit 1
 

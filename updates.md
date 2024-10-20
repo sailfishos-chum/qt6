@@ -13,6 +13,9 @@ scripts:
 
 - [packages.kf6](packages.kf6) - KDE Frameworks packages;
 
+- [packages.kde](packages.kde) - List of applications and
+  libraries that are using the KDE Applications versioning scheme (YY.MM.R).
+
 - [applications.obs](applications.obs) - List of applications and
   libraries that are using Qt6 or KF6 packages listed above.
 
@@ -64,6 +67,9 @@ Update instructions for Qt6 or KF6:
 - For KF6, run after replacing a version:
   - `scripts/update-sources.sh --kf6 --version 6.6.0`
 
+- For KDE/Plasma, run after replacing a version:
+  - `scripts/update-sources.sh --kde --version 24.08.2`
+
 - Observe that the script runs till the end without errors. If there
   are errors, investigate and see what went wrong. You can rerun
   `update-sources.sh` script several times - it will push changes to
@@ -84,6 +90,7 @@ Update instructions for Qt6 or KF6:
 - For updating packages at OBS `sailfishos:chum:testing`, run
   - for Qt6: `scripts/update-obs-packages.sh --qt6 --testing`
   - for KF6: `scripts/update-obs-packages.sh --kf6 --testing`
+  - for KDE: `scripts/update-obs-packages.sh --kde --testing`
 
 - Wait till update is finished and test it
 
@@ -91,6 +98,7 @@ Update instructions for Qt6 or KF6:
   of the script:
   - for Qt6: `scripts/update-obs-packages.sh --qt6 --release`
   - for KF6: `scripts/update-obs-packages.sh --kf6 --release`
+  - for KDE: `scripts/update-obs-packages.sh --kde --release`
 
 
 ## To change OBS targets
