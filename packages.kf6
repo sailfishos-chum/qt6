@@ -25,6 +25,8 @@ kf6-kwidgetsaddons
 kf6-kwindowsystem
 kf6-qqc2-desktop-style
 kf6-sonnet
+kf6-syndication
+kf6-threadweaver
 
 kf6-kirigami-addons NOGIT
 kf6-plasma-wayland-protocols NOGIT
