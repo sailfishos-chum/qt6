@@ -11,6 +11,7 @@ kf6-kconfigwidgets
 kf6-kcontacts
 kf6-kcoreaddons
 kf6-kdbusaddons
+kf6-kfilemetadata
 kf6-kguiaddons
 kf6-kholidays
 kf6-ki18n
@@ -29,7 +30,6 @@ kf6-qqc2-desktop-style
 kf6-sonnet
 kf6-syndication
 kf6-threadweaver
-kf6-kfilemetadata
 kf6-kxmlgui
 
 kf6-kirigami-addons NOGIT
