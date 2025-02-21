@@ -1,6 +1,6 @@
 # Qt6 meta package for Sailfish OS
 
-**Current packaged version: 6.7.2**
+**Current packaged version: 6.8.3**
 
 ## Dependencies
 
