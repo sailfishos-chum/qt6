@@ -8,6 +8,7 @@
 %_qt6_archdatadir %{_libdir}/qt6
 %_qt6_bindir %{_libdir}/qt6/bin
 %_qt6_datadir %{_datadir}/qt6
+%_qt6_descriptionsdir %{_qt6_archdatadir}/modules
 %_qt6_docdir %{_docdir}/qt6
 %_qt6_examplesdir %{_qt6_archdatadir}/examples
 %_qt6_headerdir %{_includedir}/qt6
@@ -15,6 +16,7 @@
 %_qt6_importdir %{_qt6_archdatadir}/imports
 %_qt6_libdir %{_libdir}
 %_qt6_libexecdir %{_qt6_archdatadir}/libexec
+%_qt6_metatypesdir %{_qt6_archdatadir}/metatypes
 %_qt6_mkspecsdir %{_qt6_archdatadir}/mkspecs
 %_qt6_plugindir %{_qt6_archdatadir}/plugins
 %_qt6_qmldir %{_qt6_archdatadir}/qml
