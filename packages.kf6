@@ -11,7 +11,11 @@ kf6-kconfigwidgets
 kf6-kcontacts
 kf6-kcoreaddons
 kf6-kdbusaddons
+<<<<<<< HEAD
 kf6-kfilemetadata
+=======
+kf6-kdeclarative
+>>>>>>> 9e0f7e1 (Add kdeclarative)
 kf6-kguiaddons
 kf6-kholidays
 kf6-ki18n
