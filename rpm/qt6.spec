@@ -1,7 +1,7 @@
 
 Name: qt6
 # This version MUST remain in sync with Qt6 versions!
-Version: 6.8.3
+Version: 6.8.4
 Release: 1%{?dist}
 Summary: Qt6 meta package
 License: GPL-3.0-only
