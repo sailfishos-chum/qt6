@@ -62,7 +62,7 @@ Update instructions for Qt6 or KF6:
   updates
 
 - For Qt6, run after replacing a version:
-  - `scripts/update-sources.sh --qt6 --version 6.8.4`
+  - `scripts/update-sources.sh --qt6 --version 6.8.4 --tag v6.8.4-lts-lgpl`
 
 - For KF6, run after replacing a version:
   - `scripts/update-sources.sh --kf6 --version 6.6.0`
