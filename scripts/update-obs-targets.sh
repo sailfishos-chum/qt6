@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Update Qt or KF packages at OBS
 
 set -e
@@ -6,28 +8,28 @@ ARGS_PROCESSED=$(getopt -o a:d:rt --long add:,delete:,release,testing,reset -- "
 
 ADD=
 DEL=
-KF6=
-QT6=
-KDE=
 OBS_PROJECT=
+ACTION_COUNT=0
+PROJECT_COUNT=0
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd -P )
 OBSMOD=${SCRIPT_DIR}/obsbuildmod.py
 
 eval set -- "$ARGS_PROCESSED"
-while [ : ]; do
+while true; do
   case "$1" in
-    -a | --add) OPT="--add $2"; shift 2; ;;
-    -d | --delete) OPT="--delete $2"; shift 2; ;;
-    --reset) OPT="--reset"; shift; ;;
-    -r | --release) OBS_PROJECT=sailfishos:chum; shift; ;;
-    -t | --testing) OBS_PROJECT=sailfishos:chum:testing; shift; ;;
+    -a | --add) OPT="--add $2"; ACTION_COUNT=$((ACTION_COUNT + 1)); shift 2; ;;
+    -d | --delete) OPT="--delete $2"; ACTION_COUNT=$((ACTION_COUNT + 1)); shift 2; ;;
+    --reset) OPT="--reset"; ACTION_COUNT=$((ACTION_COUNT + 1)); shift; ;;
+    -r | --release) OBS_PROJECT=sailfishos:chum; PROJECT_COUNT=$((PROJECT_COUNT + 1)); shift; ;;
+    -t | --testing) OBS_PROJECT=sailfishos:chum:testing; PROJECT_COUNT=$((PROJECT_COUNT + 1)); shift; ;;
     --) shift; break; ;;
+    *) echo "Unexpected option: $1"; exit 1; ;;
   esac
 done
 
 # check options
-[ -z "$OPT" ] && echo "Specify whether you want to add or delete SFOS version build target or reset all targets" && exit 1
-[ -z "$OBS_PROJECT" ] && echo "Specify whether you want to update release (sailfishos:chum) or testing (sailfishos:chum:testing) OBS project" && exit 1
+[ "$ACTION_COUNT" -ne 1 ] && echo "Specify either add, delete, or reset target action" && exit 1
+[ "$PROJECT_COUNT" -ne 1 ] && echo "Specify either release or testing OBS project" && exit 1
 
 echo -e "\nChanging targets in ${OBS_PROJECT}\n"
 
