@@ -60,7 +60,7 @@ while read -r line; do
 
     sed -i "s/^Version:.*/Version: ${REAL_VERSION}/g" rpm/*.spec
     if [ -n "$KF6" ]; then
-	sed -i -E "s/^%global[[:space:]]+kf6_version[[:space:]]+.*/%global kf6_version ${VERSION}/g" rpm/*.spec
+	sed -i -E "s/^%global[[:space:]]+kf_version[[:space:]]+.*/%global kf_version ${VERSION}/g" rpm/*.spec
     elif [ -n "$QT6" ]; then
 	sed -i -E "s/^%global[[:space:]]+qt_version[[:space:]]+.*/%global qt_version ${VERSION}/g" rpm/*.spec
     elif [ -n "$KDE" ]; then

@@ -21,7 +21,7 @@ main branch and keep Qt515 version, if needed, in separate qt515 branch.
 
 When adding packages, replicate the same approach in defining Qt or KF
 version using macros at the top of SPEC files (`qt_version` and
-`kf6_version`). Those are needed if you have somewhere requirements with
+`kf_version`). Those are needed if you have somewhere requirements with
 corresponding Qt or KF version.
 
 In addition, add the library to [packages.qt6](packages.qt6) or 
