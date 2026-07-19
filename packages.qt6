@@ -7,7 +7,7 @@ qt6-qtcharts
 qt6-qtconnectivity
 qt6-qtdatavis3d
 qt6-qtdeclarative
-qt6-qtgraphs
+qt6-qtgraphs NOGIT
 qt6-qtgrpc
 qt6-qthttpserver
 qt6-qtimageformats
