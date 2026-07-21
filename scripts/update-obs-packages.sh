@@ -4,7 +4,7 @@
 
 set -e
 
-ARGS_PROCESSED=$(getopt -o kqKrt --long kf6,qt6,kde,release,testing -- "$@")
+ARGS_PROCESSED=$(getopt -o kqKrtg: --long kf6,qt6,kde,release,testing,tag: -- "$@")
 
 INPUT=
 KF6=
@@ -13,6 +13,7 @@ KDE=
 GITHUB_BASE=https://github.com/sailfishos-chum
 OBS_PROJECT=
 PROJECT_COUNT=0
+TAG=
 
 eval set -- "$ARGS_PROCESSED"
 while true; do
@@ -22,6 +23,7 @@ while true; do
     -K | --kde) KDE=1; INPUT=packages.kde; shift; ;;
     -r | --release) OBS_PROJECT=sailfishos:chum; PROJECT_COUNT=$((PROJECT_COUNT + 1)); shift; ;;
     -t | --testing) OBS_PROJECT=sailfishos:chum:testing; PROJECT_COUNT=$((PROJECT_COUNT + 1)); shift; ;;
+    -g | --tag) TAG=$2; shift 2; ;;
     --) shift; break; ;;
     *) echo "Unexpected option: $1"; exit 1; ;;
   esac
@@ -51,9 +53,23 @@ while read -r line; do
     (( ${#package_arr[@]} > 1 )) && [ ${package_arr[1]} != "NOGIT" ] && package_obs=${package_arr[1]}
 
     # get the tag with the largest version
-    VERSION=$(git -c 'versionsort.suffix=-' ls-remote --exit-code \
+    TAG_PATTERN='*.*.*'
+    [ -n "$TAG" ] && TAG_PATTERN="*${TAG}*"
+
+    VERSION=$(git -c 'versionsort.suffix=-' ls-remote \
 		  --refs --sort='version:refname' --tags \
-		  ${GITHUB_BASE}/${package_git} '*.*.*' | tail --lines=1 | cut --delimiter='/' --fields=3)
+		  ${GITHUB_BASE}/${package_git} "$TAG_PATTERN" | tail --lines=1 | cut --delimiter='/' --fields=3)
+
+    if [ -z "$VERSION" ]; then
+	echo
+	if [ -n "$TAG" ]; then
+	    echo "Warning: no tags matching '${TAG}' found for ${package_git}. Skipping."
+	else
+	    echo "Warning: no tags found for ${package_git}. Skipping."
+	fi
+	echo
+	continue
+    fi
 
     echo
     echo "Update: ${package_git} -> ${package_obs}; Version: ${VERSION}"
