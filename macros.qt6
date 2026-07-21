@@ -39,9 +39,19 @@
   QMAKE_LFLAGS_RELEASE="${LDFLAGS:-%{_qt6_ldflags}}" \\\
   QMAKE_STRIP=
 
-%qmake_qt6 %{_qt6_qmake} %{?_qt6_qmake_flags}
+%_sbox_mapping_loglevel error
+%_sbox_quiet 0
+
+%_qt6_set_sbox_env \
+ SBOX_MAPPING_LOGLEVEL="%{_sbox_mapping_loglevel}"; export SBOX_MAPPING_LOGLEVEL; \
+ SBOX_QUIET=%{_sbox_quiet}; export SBOX_QUIET;
+
+%qmake_qt6 \
+ %_qt6_set_sbox_env \
+ %{_qt6_qmake} %{?_qt6_qmake_flags}
 
 %cmake_qt6 \
+ %_qt6_set_sbox_env \
  %cmake -DCMAKE_BUILD_TYPE=%{_qt6_build_type} \\\
         -DCMAKE_INSTALL_PREFIX=%{_qt6_prefix} \\\
 %if "%_qt6_build_tool" == "ninja" \
