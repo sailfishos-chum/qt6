@@ -30,3 +30,5 @@ qt6-qtwayland
 qt6-qtwebchannel
 qt6-qtwebengine NOOBS
 qt6-qtwebsockets
+
+qt6-libquotient
